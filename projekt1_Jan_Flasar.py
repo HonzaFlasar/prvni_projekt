@@ -72,7 +72,10 @@ index_textu = cislo_textu - 1
 #print(TEXTS[index_textu])
 
 # rozdělení textu na slova
-slova = TEXTS[index_textu].split(" ")
+slova = TEXTS[index_textu].split()
+vycistena_slova = []
+for slovo in slova:
+    vycistena_slova.append(slovo.strip(",.:;!?"))
 
 # Slovník s počtem výskytu jednotlivých typů písmen
 counts = {"velke": 0, "male": 0, "prvni_velke": 0, "cislo": 0}
@@ -127,12 +130,6 @@ for slovo in slova:
         cetnost_delek[slovo] = cetnost_delek[slovo] + 1
 #print(cetnost_delek)
 
-vycistena_slova = []
-for slovo in TEXTS[index_textu].split():
-    #print(slovo)
-    cista_slova = slovo.replace(".", "")
-    vycistena_slova.append(cista_slova)
-
 # zjištění četnosti délek slov
 cetnost_delek = {}
 for slovo in vycistena_slova:
@@ -146,14 +143,14 @@ for slovo in vycistena_slova:
 pocty_delek = list(cetnost_delek.values())
 #print(pocty_delek)
 
-cara = "+---+------------------+----+"
+cara = "+---+-------------------+----+"
 print(oddelovac)
 print("")
-print("Len |    Occurences    | Nr.|")
+print("Len |    Occurences     | Nr.|")
 
 for key, value in sorted(cetnost_delek.items()):
     hvezdicky = ("*" * (value))
-    print(cara, f"|{key:^3}| {hvezdicky:16} | {value:^3}| ", sep="\n")
+    print(cara, f"|{key:^3}| {hvezdicky:17} | {value:^3}| ", sep="\n")
 
 
 
